@@ -3,27 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>간단한 막대 그래프 작성</title>
+<!--https://www.chartjs.org/docs/latest/samples/line/point-styling.html  차트 종류 있는 사이트-->
 </head>
 <body>
+<!-- canvas 태그 : 그래프가 출력되는 영역 -->
 <div>
   <canvas id="myChart"></canvas>
 </div>
 <script type="text/javascript"
-src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script> 
 <script type="text/javascript">
-  const ctx = document.getElementById("myChart")
+  const ctx = document.getElementById("myChart") // ctx = canvas 영역,그래프의 영역
   new Chart(ctx,{
-	  type:'bar',
-	  data : {
-		 labels : ['Red','Blue',"Yellow","Green","Purple","Orange"],
-		 datasets : [{
-			 label : '# of Vores',
+	  /*
+	     bar : 막대 그래프
+	     line : 선 그래프
+	     pie : 파이 그래프
+	  */
+	  type:'bar', //어떤 식으로 그래프 그릴지 정하는 부분(그래프 형태)
+	  data : { //그래프 작성을 위한 데이터 부분
+		 labels : ['Red','Blue',"Yellow","Green","Purple","Orange"], //x축의 값
+		 datasets : [{ //데이터 부분
+			 label : '# of Votes',
 			 data : [12,19,3,5,2,3],
-			 borderWidth : 1
+			 borderWidth : 1, //테두리 색상도 변경 가능
+			 backgroundColor: ['red',"blue","yellow","green","purple","orange"]
+		 },
+		 {label : '# of Votes2',
+		 data : [5,9,1,10,15,3],
+		 borderWidth : 1,
+		 backgroundColor: ['red',"blue","yellow","green","purple","orange"]
 		 }]
 	  },
-	  options : {
-		  scales : {y:{beginAtZero:true}}
+	  options : {//그래프 출력 시 처리되는 다양한 옵션 설정 부분
+		  scales : {y:{beginAtZero:false}},
+	      legend : {position :'right'},
+	      responsive : true //화면의 크기에 따라 변경 할지 말지
 	  }
   })
  
